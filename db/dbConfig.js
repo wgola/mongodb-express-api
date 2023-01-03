@@ -19,6 +19,7 @@ class DbConnection {
       this.db = this.connection.db(process.env.DB_NAME);
       console.log(`Using ${this.db.namespace} database`);
       this.collection = this.db.collection("products");
+      this.connected = true;
     } catch (e) {
       console.log("Couldnt't connect to db");
       console.log(e);
