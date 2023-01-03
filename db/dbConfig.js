@@ -1,4 +1,7 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 class DbConnection {
   constructor() {
@@ -27,4 +30,6 @@ class DbConnection {
   }
 }
 
-module.exports = { DbConnection };
+const database = new DbConnection();
+
+module.exports = { database };
