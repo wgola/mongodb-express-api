@@ -1,8 +1,10 @@
 const createFilter = (query) => {
   const splitByColon = (input) => {
     const splitted = input.split(":");
-    if (splitted.length === 1) return { key: null, input };
-    else {
+    if (splitted.length === 1) {
+      const ifBoolean = input === "true" || input === "false";
+      return { key: null, value: ifBoolean ? input === "true" : input };
+    } else {
       const key = `$${splitted[0]}`;
       const value = splitted[1];
       return { key, value };

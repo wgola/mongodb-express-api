@@ -7,4 +7,6 @@ const getAllProducts = async (sort_by, order, filter) =>
     .sort({ [sort_by]: order === "desc" ? -1 : 1 })
     .toArray();
 
+// const addProduct = async();
+
 module.exports = { getAllProducts };
