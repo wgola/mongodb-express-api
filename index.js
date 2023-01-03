@@ -21,4 +21,6 @@ app.listen(port, () => {
 
 app.get("/", (req, res) => res.send("Hello world"));
 
+app.get("/home", (req, res) => res.send("Home"));
+
 module.exports = database;
