@@ -12,8 +12,10 @@ app.use(express.json());
 
 const database = new DbConnection();
 
-app.listen(5000, () => {
-  console.log("App is listenning on port: " + 5000);
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => {
+  console.log("App is listenning on port: " + port);
   database.connect();
 });
 
