@@ -1,0 +1,14 @@
+{
+  "name": "mongodb-express-api",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "git@github.com:wgola/mongodb-express-api.git",
+  "author": "Wojciech Gola <wojciech.maciej.gola@wp.pl>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^4.13.0"
+  }
+}
