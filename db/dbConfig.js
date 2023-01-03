@@ -4,6 +4,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 class DbConnection {
+  connected = false;
+
   constructor() {
     this.client = new MongoClient(process.env.MONGO_URI, {
       useNewUrlParser: true,

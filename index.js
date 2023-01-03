@@ -15,7 +15,7 @@ database.connect();
 
 const port = process.env.PORT || 5000;
 
-app.get("/", (req, res) => res.send(database.connected));
+app.get("/", (req, res) => res.send("Connected to DB: " + database.connected));
 
 app.use("/products", productsRouter);
 
