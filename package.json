@@ -15,6 +15,6 @@
     "node": "18.x"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node api/index.js"
   }
 }
