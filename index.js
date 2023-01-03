@@ -26,4 +26,4 @@ app.get("/home", async (req, res) => {
   res.json(product);
 });
 
-module.exports = database;
+module.exports = { database };
