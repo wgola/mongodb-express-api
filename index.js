@@ -19,8 +19,12 @@ const port = process.env.PORT || 5000;
 app.get("/", (req, res) => res.send("Hello world"));
 
 app.get("/home", async (req, res) => {
-  const product = await database.getCollection().findOne({});
-  res.json(product);
+  try {
+    const product = await database.getCollection().findOne({});
+    res.json(product);
+  } catch (e) {
+    res.json(e);
+  }
 });
 
 app.listen(port, () => {
