@@ -21,6 +21,9 @@ app.listen(port, () => {
 
 app.get("/", (req, res) => res.send("Hello world"));
 
-app.get("/home", (req, res) => res.send("Home"));
+app.get("/home", async (req, res) => {
+  const product = await database.getCollection().findOne({});
+  res.json(product);
+});
 
 module.exports = database;
