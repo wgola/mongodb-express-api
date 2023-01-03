@@ -12,7 +12,7 @@ const checkIfExistsByName = async (name) =>
 
 const addProduct = async (name, price, description, amount, unit) => {
   try {
-    const ifUnique = await checkIfExistsByName(name);
+    const ifUnique = !(await checkIfExistsByName(name));
     if (ifUnique) {
       const doc = {
         name: name,
@@ -20,6 +20,7 @@ const addProduct = async (name, price, description, amount, unit) => {
         description: description,
         amount: amount,
         unit: unit,
+        inOrderProcessing: false,
       };
       await database.getCollection().insertOne(doc);
       return true;
