@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const { database } = require("../db/dbConfig");
 
 const getAllProducts = async (sort_by, order, filter) =>
@@ -44,11 +45,12 @@ const editProduct = async (id, name, price, description, amount, unit) => {
     if (unit) updated["unit"] = unit;
     const result = await database
       .getCollection()
-      .updateOne({ _id: id }, { $set: updated });
-    return result.acknowledged;
+      .updateOne({ _id: ObjectId(id) }, { $set: updated });
+    return result.acknowledged && result.modifiedCount === 1;
   } catch (e) {
+    console.log(e);
     return false;
   }
 };
 
-module.exports = { getAllProducts, addProduct };
+module.exports = { getAllProducts, addProduct, editProduct };

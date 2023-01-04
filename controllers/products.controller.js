@@ -1,4 +1,8 @@
-const { getAllProducts, addProduct } = require("../services/products.service");
+const {
+  getAllProducts,
+  addProduct,
+  editProduct,
+} = require("../services/products.service");
 const { createFilter } = require("../utils/createFilter");
 
 const getProducts = async (req, res) => {
@@ -22,4 +26,21 @@ const postProduct = async (req, res) => {
   }
 };
 
-module.exports = { getProducts, postProduct };
+const putProduct = async (req, res) => {
+  try {
+    const { name, price, description, amount, unit } = req.body;
+    const ifEdited = await editProduct(
+      req.params.id,
+      name,
+      price,
+      description,
+      amount,
+      unit
+    );
+    ifEdited ? res.status(201).json(true) : res.status(500).json(false);
+  } catch (e) {
+    res.status(503).json(e);
+  }
+};
+
+module.exports = { getProducts, postProduct, putProduct };
