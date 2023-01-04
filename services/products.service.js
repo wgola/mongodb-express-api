@@ -53,4 +53,21 @@ const editProduct = async (id, name, price, description, amount, unit) => {
   }
 };
 
-module.exports = { getAllProducts, getProductById, addProduct, editProduct };
+const deleteProductById = async (id) => {
+  try {
+    const result = await database
+      .getCollection()
+      .deleteOne({ _id: ObjectId(id), inOrderProcessing: false });
+    console.log(result);
+  } catch (e) {
+    return false;
+  }
+};
+
+module.exports = {
+  getAllProducts,
+  getProductById,
+  addProduct,
+  editProduct,
+  deleteProductById,
+};
