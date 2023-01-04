@@ -58,7 +58,7 @@ const deleteProductById = async (id) => {
     const result = await database
       .getCollection()
       .deleteOne({ _id: ObjectId(id), inOrderProcessing: false });
-    console.log(result);
+    return result.deletedCount === 1;
   } catch (e) {
     return false;
   }
