@@ -9,7 +9,7 @@ const getAllProducts = async (sort_by, order, filter) =>
     .toArray();
 
 const getProductById = async (id) =>
-  await database.getCollection().findOne({ _id: id });
+  await database.getCollection().findOne({ _id: ObjectId(id) });
 
 const checkIfExistsByName = async (name) =>
   (await database.getCollection().findOne({ name: name })) !== null;
@@ -53,4 +53,4 @@ const editProduct = async (id, name, price, description, amount, unit) => {
   }
 };
 
-module.exports = { getAllProducts, addProduct, editProduct };
+module.exports = { getAllProducts, getProductById, addProduct, editProduct };

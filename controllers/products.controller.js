@@ -1,5 +1,6 @@
 const {
   getAllProducts,
+  getProductById,
   addProduct,
   editProduct,
 } = require("../services/products.service");
@@ -11,6 +12,15 @@ const getProducts = async (req, res) => {
     const filter = createFilter(rest);
     const products = await getAllProducts(sort_by, order, filter);
     res.status(200).json(products);
+  } catch (e) {
+    res.status(503).json(e);
+  }
+};
+
+const getProduct = async (req, res) => {
+  try {
+    const product = await getProductById(req.params.id);
+    res.status(200).json(product);
   } catch (e) {
     res.status(503).json(e);
   }
@@ -43,4 +53,4 @@ const putProduct = async (req, res) => {
   }
 };
 
-module.exports = { getProducts, postProduct, putProduct };
+module.exports = { getProducts, getProduct, postProduct, putProduct };
