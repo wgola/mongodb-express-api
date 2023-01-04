@@ -3,6 +3,7 @@ const {
   getProductById,
   addProduct,
   editProduct,
+  deleteProductById,
 } = require("../services/products.service");
 const { createFilter } = require("../utils/createFilter");
 
@@ -48,6 +49,15 @@ const putProduct = async (req, res) => {
       unit
     );
     ifEdited ? res.status(201).json(true) : res.status(500).json(false);
+  } catch (e) {
+    res.status(503).json(e);
+  }
+};
+
+const deleteProduct = async (req, res) => {
+  try {
+    const result = await deleteProductById(req.params.id);
+    result ? res.status(200).json(true) : res.status(500).json(false);
   } catch (e) {
     res.status(503).json(e);
   }
