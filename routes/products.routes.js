@@ -5,9 +5,12 @@ const {
   putProduct,
   getProduct,
   deleteProduct,
+  getRaport,
 } = require("../controllers/products.controller");
 
 const productsRouter = express.Router();
+
+productsRouter.get("/raport", getRaport);
 
 productsRouter.put("/:id", putProduct);
 

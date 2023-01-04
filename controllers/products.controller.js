@@ -4,6 +4,7 @@ const {
   addProduct,
   editProduct,
   deleteProductById,
+  createRaport,
 } = require("../services/products.service");
 const { createFilter } = require("../utils/createFilter");
 
@@ -63,10 +64,20 @@ const deleteProduct = async (req, res) => {
   }
 };
 
+const getRaport = async (req, res) => {
+  try {
+    const raport = await createRaport();
+    res.json(raport);
+  } catch (e) {
+    res.status(503).json(e);
+  }
+};
+
 module.exports = {
   getProducts,
   getProduct,
   postProduct,
   putProduct,
   deleteProduct,
+  getRaport,
 };

@@ -64,10 +64,31 @@ const deleteProductById = async (id) => {
   }
 };
 
+const createRaport = async () => {
+  try {
+    const result = await database
+      .getCollection()
+      .aggregate([
+        {
+          $project: {
+            name: 1,
+            amount: { $concat: [{ $toString: "$amount" }, " ", "$unit"] },
+            totalPrice: { $multiply: ["$amount", "$price"] },
+          },
+        },
+      ])
+      .toArray();
+    return result;
+  } catch (e) {
+    return [];
+  }
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   addProduct,
   editProduct,
   deleteProductById,
+  createRaport,
 };
