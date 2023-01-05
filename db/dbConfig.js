@@ -1,38 +1,12 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
-const dotenv = require("dotenv");
+const mongoose = require("mongoose");
 
-dotenv.config();
-
-class DbConnection {
-  connected = false;
-
-  constructor() {
-    this.client = new MongoClient(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverApi: ServerApiVersion.v1,
-    });
+const connectDB = async () => {
+  try {
+    mongoose.connect(process.env.MONGO_URI);
+    console.log("Connected to DB");
+  } catch (e) {
+    console.log("Couldn't connect to DB");
   }
+};
 
-  async connect() {
-    try {
-      this.connection = await this.client.connect();
-      console.log("Connected to DB");
-      this.db = this.connection.db(process.env.DB_NAME);
-      console.log(`Using ${this.db.namespace} database`);
-      this.collection = this.db.collection("products");
-      this.connected = true;
-    } catch (e) {
-      console.log("Couldnt't connect to db");
-      console.log(e);
-    }
-  }
-
-  getCollection() {
-    return this.collection;
-  }
-}
-
-const database = new DbConnection();
-
-module.exports = { database };
+module.exports = { connectDB };
